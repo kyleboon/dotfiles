@@ -1,0 +1,4 @@
+% heroku
+
+# Copy config between apps
+heroku config -s -a <old-app> | tr '\n''' | xargs heroku config:set -a <new-app>

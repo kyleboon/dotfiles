@@ -1,0 +1,7 @@
+% kafkacat
+
+# List topics on a broker
+kafkacat -L -b <broker> | grep topic
+
+# Find message on topic by key
+kafkacat -C -b <broker> -t <topic> -q -e -o beginning -f '%p %o %k\n' | grep --line-buffered <regex>
