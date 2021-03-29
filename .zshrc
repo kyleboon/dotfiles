@@ -80,10 +80,12 @@ alias gdh1="git diff HEAD~1"
 alias gdtom="git difftool origin/master"
 alias gdom="git diff origin/master"
 
+alias gcb="git branch | grep -v "master" | xargs git branch -D"
+
 alias -g H1="HEAD~1"
 alias -g OM="origin/master"
 
-alias grom="git rebase -p origin/master"
+alias grom="git rebase --rebase-merges origin/$(git default-branch)"
 
 alias gw='nocorrect ./gradlew'
 
@@ -110,6 +112,21 @@ else
   echo "missing fzf: brew install fzf ripgrep bat"
 fi
 
+jqpath_cmd='
+def path_str: [.[] | if (type == "string") then "." + . else "[" + (. | tostring) + "]" end] | add;
+
+. as $orig |
+  paths(scalars) as $paths |
+  $paths |
+  . as $path |
+  $orig |
+  [($path | path_str), "\u00a0", (getpath($path) | tostring)] |
+  add
+'
+
+# pipe json in to use fzf to search through it for jq paths, uses a non-breaking space as an fzf column delimiter
+alias jqpath="jq -rc '$jqpath_cmd' | cat <(echo $'PATH\u00a0VALUE') - | column -t -s $'\u00a0' | fzf +s -m --header-lines=1"
+
 ## Antibody ZSH Plugins
 
 if command -v antibody >/dev/null 2>&1; then
@@ -125,6 +142,8 @@ else
 fi
 
 . /Users/z002nd2/bin/z.sh
+
+eval "$(direnv hook zsh)"
 
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
@@ -198,3 +217,9 @@ setopt prompt_subst # adds support for command substitution
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+eval "$(pyenv init -)"
+
+if command -v navi >/dev/null 2>&1; then
+  source <(navi widget zsh)
+fi
