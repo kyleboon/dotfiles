@@ -223,3 +223,32 @@ eval "$(pyenv init -)"
 if command -v navi >/dev/null 2>&1; then
   source <(navi widget zsh)
 fi
+
+nice_val=20
+  function _tnice-process() {
+    proc_name=$1
+    pid=$(ps -Af | grep -w "$proc_name" | grep -v grep | head -1 | awk '{print $2}')
+    if [[ -z "$pid" ]]; then
+      echo "process not found: $proc_name"
+    else
+      current_nice=$(ps -Afl -C $pid | awk '{print $11}' | grep -v NI | head -n 1)
+      # Get current NICE value
+      if [[ "$current_nice" != "$nice_val" ]]; then
+        echo "'T-Nice'-ing $proc_name ($current_nice -> $nice_val)"
+        sudo renice -n "$nice_val" -p $pid
+        ps -Afl -C $pid
+      else
+        echo "$proc_name is already nice"
+      fi
+    fi
+  }
+  function tnice() {
+    _tnice-process EPClassifier
+    _tnice-process TaniumClient
+    _tnice-process TaniumCX
+    _tnice-process TaniumDetectEngine
+    _tnice-process crowdstrike
+    _tnice-process nessusd
+    _tnice-process ZscalerService
+    _tnice-process ZscalerTunnel
+  }

@@ -54,3 +54,5 @@
   template = ~/.gitmessage
 [fetch]
   prune = true
+[init]
+	defaultBranch = main
