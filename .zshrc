@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 export HOSTNAME=$(hostname)
 
 ## GENERAL EXPORTS ############################################################################################################
@@ -85,13 +92,15 @@ alias gcb="git branch | grep -v "master" | xargs git branch -D"
 alias -g H1="HEAD~1"
 alias -g OM="origin/master"
 
-alias grom="git rebase --rebase-merges origin/$(git default-branch)"
-
 alias gw='nocorrect ./gradlew'
 
 ## Fuzzy Finder Auto Completion
 
-FZF_SHELL="/usr/local/opt/fzf/shell"
+if [[ -d "/opt/homebrew/opt/fzf/shell" ]]; then
+  FZF_SHELL="/opt/homebrew/opt/fzf/shell"
+else
+  FZF_SHELL="/usr/local/opt/fzf/shell"
+fi
 
 if [[ -d "$FZF_SHELL" ]]; then
   export FZF_CTRL_R_OPTS="--min-height=20 --exact --preview 'echo {}' --preview-window down:3:wrap"
@@ -141,7 +150,7 @@ else
   echo "brew install getantibody/tap/antibody"
 fi
 
-. /Users/z002nd2/bin/z.sh
+. "$HOME/bin/z.sh"
 
 eval "$(direnv hook zsh)"
 
