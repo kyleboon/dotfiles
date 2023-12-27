@@ -94,32 +94,7 @@ alias -g OM="origin/master"
 
 alias gw='nocorrect ./gradlew'
 
-## Fuzzy Finder Auto Completion
-
-if [[ -d "/opt/homebrew/opt/fzf/shell" ]]; then
-  FZF_SHELL="/opt/homebrew/opt/fzf/shell"
-else
-  FZF_SHELL="/usr/local/opt/fzf/shell"
-fi
-
-if [[ -d "$FZF_SHELL" ]]; then
-  export FZF_CTRL_R_OPTS="--min-height=20 --exact --preview 'echo {}' --preview-window down:3:wrap"
-  export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules,build}/*" 2> /dev/null'
-  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-  export FZF_CTRL_T_OPTS=$'--min-height=20 --preview \'[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file ||
-                  (bat --style=numbers --color=always {} ||
-                    cat {}) 2> /dev/null | head -500
-  \''
-
-
-  source "${FZF_SHELL}/completion.zsh" 2> /dev/null
-  source "${FZF_SHELL}/key-bindings.zsh"
-
-  alias fzfp="fzf $FZF_CTRL_T_OPTS"
-  alias -g F='| fzfp'
-else
-  echo "missing fzf: brew install fzf ripgrep bat"
-fi
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 jqpath_cmd='
 def path_str: [.[] | if (type == "string") then "." + . else "[" + (. | tostring) + "]" end] | add;
@@ -160,9 +135,6 @@ export SDKMAN_DIR="$HOME/.sdkman"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
 
 # keep history file between sessions
 DIRSTACKSIZE=15
@@ -228,36 +200,18 @@ setopt prompt_subst # adds support for command substitution
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 eval "$(pyenv init -)"
+eval "$(rbenv init - zsh)"
 
 if command -v navi >/dev/null 2>&1; then
   source <(navi widget zsh)
 fi
 
-nice_val=20
-  function _tnice-process() {
-    proc_name=$1
-    pid=$(ps -Af | grep -w "$proc_name" | grep -v grep | head -1 | awk '{print $2}')
-    if [[ -z "$pid" ]]; then
-      echo "process not found: $proc_name"
-    else
-      current_nice=$(ps -Afl -C $pid | awk '{print $11}' | grep -v NI | head -n 1)
-      # Get current NICE value
-      if [[ "$current_nice" != "$nice_val" ]]; then
-        echo "'T-Nice'-ing $proc_name ($current_nice -> $nice_val)"
-        sudo renice -n "$nice_val" -p $pid
-        ps -Afl -C $pid
-      else
-        echo "$proc_name is already nice"
-      fi
-    fi
-  }
-  function tnice() {
-    _tnice-process EPClassifier
-    _tnice-process TaniumClient
-    _tnice-process TaniumCX
-    _tnice-process TaniumDetectEngine
-    _tnice-process crowdstrike
-    _tnice-process nessusd
-    _tnice-process ZscalerService
-    _tnice-process ZscalerTunnel
-  }
+alias mamba="docker pull --platform linux/amd64 wayfair/mamba:latest && docker run --platform linux/amd64 -it wayfair/mamba:latest"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/kb512g/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kb512g/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/kb512g/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kb512g/google-cloud-sdk/completion.zsh.inc'; fi
+
+eval "$(mcfly init bash)"
