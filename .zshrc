@@ -15,25 +15,13 @@ export WORDS=/usr/share/dict/words
 
 ## GENERAL ############################################################################################################
 
-alias dh='dirs -v'  # directory history
-
 alias is_port_open='nc -z localhost'
-
-function wait_for_8080() {
-    echo "waiting for port 8080 to open up"
-    while ! is_port_open 8080; do sleep 0.1; done;
-}
-
-# grep history
-alias ghist='fc -l 0 | grep'
 
 alias spwd='pwd | pbcopy'  # copy the current working directory to the clipboard
 alias pwp='pwd -P'
 
-# give it an url and it will see how long it takes to make 100 requests with 10 connections
-alias absimple='ab -n 100 -c 10 -g gnuplot.tsv'
 
-export VIM_EDITOR=mvim
+export VIM_EDITOR=nvim
 alias v='$VIM_EDITOR'
 alias vz='v $ZSHDIR'
 
@@ -41,36 +29,13 @@ alias agrep='alias | grep -i'
 
 # copy the last command to your clipboard
 alias clc='fc -ln -1 | pbcopy && echo $(pbpaste)'
-
-# builtins don't have their own man page
-alias manbi='man zshbuiltins'
-
 alias myip="curl icanhazip.com"
 
 alias curltime="curl -sL -w '   namelookup: %{time_namelookup}\n      connect: %{time_connect}\n   appconnect: %{time_appconnect}\n  pretransfer: %{time_pretransfer}\n     redirect: %{time_redirect}\nstarttransfer: %{time_starttransfer}\n        total: %{time_total}\n' "
 
 alias httpcode='curl --write-out %{http_code} --head --silent --output /dev/null'
 
-# global aliases
-alias -g 21="2>&1"
-alias -g G='| grep'
-alias -g GI='| grep -i'
-alias -g GV='| grep -v'
-alias -g GE='| egrep'
-alias -g PC="| pc"
-alias -g XGI="| xargs grep -ni"
-alias -g XG="| xargs grep -n"
-alias -g L='| less'
-alias -g PBC='| pbcopy'
-alias -g X1="| xargs -L1"
-
-alias -g ND='*(/om[1])' # newest directory
-alias -g NF='*(.om[1])' # newest file
-
 rot13 () { tr "[a-m][n-z][A-M][N-Z]" "[n-z][a-m][N-Z][A-M]" }
-
-alias duc='du -sh *(/)'
-alias duca='du -sh ./*'
 
 ## VERSION CONTROL ############################################################################################################
 
@@ -214,4 +179,5 @@ if [ -f '/Users/kb512g/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kb512g/g
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/kb512g/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kb512g/google-cloud-sdk/completion.zsh.inc'; fi
 
-eval "$(mcfly init bash)"
+eval "$(mcfly init zsh)"
+export MCFLY_LIGHT=TRUE
