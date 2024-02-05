@@ -1,10 +1,11 @@
 [user]
   name = Kyle Boon
-  email = kyle.boon@target.com
-[core]
-  editor = vim
+  email = kyle.f.boon@gmail.com
+ [core]
+  editor = nvim
+  excludesfile = /Users/kyleboon/.gitignore_global
 [merge]
-  tool = vim
+  tool = nvim
 [alias]
   co = checkout
   # Log display from screencast, with train tracks.
@@ -36,7 +37,7 @@
   diff = auto
   status = auto
   branch = auto
-  ui = true
+  ui = auto
 
 [help]
   autocorrect = 1
@@ -55,6 +56,6 @@
 [fetch]
   prune = true
 [init]
-	defaultBranch = main
+  defaultBranch = main
 [pull]
-	ff = only
+  ff = only
