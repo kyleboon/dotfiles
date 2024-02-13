@@ -1,9 +1,7 @@
 [user]
   name = Kyle Boon
-  email = kyle.f.boon@gmail.com
- [core]
   editor = nvim
-  excludesfile = /Users/kyleboon/.gitignore_global
+	email = kyle.f.boon@gmail.com
 [merge]
   tool = nvim
 [alias]

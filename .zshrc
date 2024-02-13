@@ -58,6 +58,7 @@ alias -g H1="HEAD~1"
 alias -g OM="origin/master"
 
 alias gw='nocorrect ./gradlew'
+alias uncommitted="find . -type d -name '.git' -execdir sh -c 'git status --porcelain | grep -q . && echo "${PWD%/.git}"' \;"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -181,3 +182,4 @@ if [ -f '/Users/kb512g/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kb
 
 eval "$(mcfly init zsh)"
 export MCFLY_LIGHT=TRUE
+export BUILDKIT_NO_CLIENT_TOKEN=1
