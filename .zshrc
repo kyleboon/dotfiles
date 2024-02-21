@@ -183,3 +183,5 @@ if [ -f '/Users/kb512g/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kb
 eval "$(mcfly init zsh)"
 export MCFLY_LIGHT=TRUE
 export BUILDKIT_NO_CLIENT_TOKEN=1
+
+export PATH="$PATH:/Users/kb512g/.bin"
