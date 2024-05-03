@@ -62,23 +62,7 @@ alias uncommitted="find . -type d -name '.git' -execdir sh -c 'git status --porc
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-jqpath_cmd='
-def path_str: [.[] | if (type == "string") then "." + . else "[" + (. | tostring) + "]" end] | add;
-
-. as $orig |
-  paths(scalars) as $paths |
-  $paths |
-  . as $path |
-  $orig |
-  [($path | path_str), "\u00a0", (getpath($path) | tostring)] |
-  add
-'
-
-# pipe json in to use fzf to search through it for jq paths, uses a non-breaking space as an fzf column delimiter
-alias jqpath="jq -rc '$jqpath_cmd' | cat <(echo $'PATH\u00a0VALUE') - | column -t -s $'\u00a0' | fzf +s -m --header-lines=1"
-
-## Antibody ZSH Plugins
-
+# Antibody plugins 
 if command -v antibody >/dev/null 2>&1; then
   source <(antibody init)
   antibody bundle zsh-users/zsh-autosuggestions
@@ -171,8 +155,6 @@ eval "$(rbenv init - zsh)"
 if command -v navi >/dev/null 2>&1; then
   source <(navi widget zsh)
 fi
-
-alias mamba="docker pull --platform linux/amd64 wayfair/mamba:latest && docker run --platform linux/amd64 -it wayfair/mamba:latest"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/kb512g/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kb512g/google-cloud-sdk/path.zsh.inc'; fi

@@ -267,7 +267,8 @@ require('lazy').setup({
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   -- { import = 'custom.plugins' },
-  { 'github/copilot.vim' }
+  { 'github/copilot.vim' },
+  { "CRAG666/code_runner.nvim", config = true }
 }, {})
 
 -- [[ Setting options ]]
