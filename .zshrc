@@ -46,7 +46,8 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # Aliases
 alias ls='ls --color'
-
+alias wf-ctx="cat k8s.yaml | yq '.sites | keys[]' | kubectx"
+alias wf-ns="cat k8s.yaml | yq '.deploy.applicationNamespace' | xargs kubectl config set-context --current --namespace"
 autoload -U compinit && compinit
 
 
@@ -56,8 +57,8 @@ autoload -U compinit && compinit
 
 eval "$(zoxide init zsh)"
 
-#export SDKMAN_DIR="$HOME/.sdkman"
-#[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 #export NVM_DIR="$HOME/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -80,3 +81,6 @@ eval "$(mcfly init zsh)"
 export MCFLY_LIGHT=TRUE
 export BUILDKIT_NO_CLIENT_TOKEN=1
 
+
+# Added by Windsurf
+export PATH="/Users/kb512g/.codeium/windsurf/bin:$PATH"
