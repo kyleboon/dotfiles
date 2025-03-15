@@ -66,7 +66,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-#eval "$(pyenv init -)"
+eval "$(pyenv init -)"
 eval "$(rbenv init - zsh)"
 
 if command -v navi >/dev/null 2>&1; then
@@ -80,6 +80,9 @@ export BUILDKIT_NO_CLIENT_TOKEN=1
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+# uv / local bin env
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
 # Source machine-specific config (env vars, work settings, etc.)
 if [[ -f ~/.zshrc.local ]]; then
