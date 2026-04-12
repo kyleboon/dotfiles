@@ -2,8 +2,21 @@
   name = Kyle Boon
   editor = nvim
 	email = kyle.f.boon@gmail.com
+[core]
+  pager = delta
+  autocrlf = input
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  navigate = true
+  side-by-side = true
+  line-numbers = true
 [merge]
   tool = nvim
+  ff = only
+  conflictstyle = diff3
+[diff]
+  colorMoved = default
 [alias]
   co = checkout
   # Log display from screencast, with train tracks.
@@ -44,11 +57,8 @@
   submodule = 1
 
 [push]
-  # Only push branches that have been set up to track a remote branch.
   default = current
-  autocrlf = input
-[merge]
-  ff = only
+  autoSetupRemote = true
 [commit]
   template = ~/.gitmessage
 [fetch]
@@ -57,3 +67,5 @@
   defaultBranch = main
 [pull]
   ff = only
+[transfer]
+  fsckobjects = true
