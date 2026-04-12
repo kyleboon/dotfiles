@@ -69,7 +69,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 #eval "$(pyenv init -)"
-#eval "$(rbenv init - zsh)"
+eval "$(rbenv init - zsh)"
 
 if command -v navi >/dev/null 2>&1; then
   source <(navi widget zsh)
@@ -92,6 +92,15 @@ export BUILDKIT_NO_CLIENT_TOKEN=1
 if [[ -d "$HOME/.codeium/windsurf/bin" ]]; then
   export PATH="$HOME/.codeium/windsurf/bin:$PATH"
 fi
+
+# LM Studio CLI
+if [[ -d "$HOME/.lmstudio/bin" ]]; then
+  export PATH="$PATH:$HOME/.lmstudio/bin"
+fi
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 # Source machine-specific config (env vars, work settings, etc.)
 if [[ -f ~/.zshrc.local ]]; then
