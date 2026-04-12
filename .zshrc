@@ -14,7 +14,11 @@ fi
 
 source "$ZINIT_HOME/zinit.zsh"
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -x /usr/local/bin/brew ]]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
 
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
@@ -71,16 +75,25 @@ if command -v navi >/dev/null 2>&1; then
   source <(navi widget zsh)
 fi
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/kb512g/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kb512g/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/kb512g/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kb512g/google-cloud-sdk/completion.zsh.inc'; fi
+# Google Cloud SDK
+if [[ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]]; then
+  source "$HOME/google-cloud-sdk/path.zsh.inc"
+fi
+if [[ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]]; then
+  source "$HOME/google-cloud-sdk/completion.zsh.inc"
+fi
 
 eval "$(mcfly init zsh)"
 export MCFLY_LIGHT=TRUE
 export BUILDKIT_NO_CLIENT_TOKEN=1
 
 
-# Added by Windsurf
-export PATH="/Users/kb512g/.codeium/windsurf/bin:$PATH"
+# Windsurf
+if [[ -d "$HOME/.codeium/windsurf/bin" ]]; then
+  export PATH="$HOME/.codeium/windsurf/bin:$PATH"
+fi
+
+# Source machine-specific config (env vars, work settings, etc.)
+if [[ -f ~/.zshrc.local ]]; then
+  source ~/.zshrc.local
+fi

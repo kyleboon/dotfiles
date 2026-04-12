@@ -574,7 +574,7 @@ local servers = {
   -- gopls = {},
   pyright = {},
   -- rust_analyzer = {},
-  tsserver = {},
+  ts_ls = {},
   kotlin_language_server = {},
   lemminx = {},
   html = { filetypes = { 'html', 'twig', 'hbs'} },

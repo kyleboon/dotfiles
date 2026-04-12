@@ -13,7 +13,7 @@
   aa = add --all
   ap = add --patch
   branches = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
-  ammend = commit --amend -v
+  amend = commit --amend -v
   ci = commit -v
   delete-branch = !sh -c 'git push origin :refs/heads/$1 && git branch -D $1' -
   rename-branch = !sh -c 'old=$(git current-branch) && git branch -m $old $1 && git push origin --set-upstream $1 && git push origin --delete $old' -
