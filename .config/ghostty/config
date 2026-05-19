@@ -1,0 +1,61 @@
+# Ported from ~/.alacritty.toml
+
+# Font
+font-family = "JetBrainsMono Nerd Font"
+font-family-bold = "JetBrainsMono Nerd Font"
+font-family-italic = "JetBrainsMono Nerd Font"
+font-style-bold = "Bold"
+font-style = "Regular"
+font-size = 18
+
+# Colors (Catppuccin-ish palette from the alacritty config)
+background = 1E1D2F
+foreground = D9E0EE
+bold-is-bright = true
+
+# Cursor
+cursor-color = F5E0DC
+cursor-text = 1E1D2F
+cursor-style = block
+cursor-style-blink = false
+
+# Normal palette (0-7)
+palette = 0=#6E6C7E
+palette = 1=#F28FAD
+palette = 2=#ABE9B3
+palette = 3=#FAE3B0
+palette = 4=#96CDFB
+palette = 5=#F5C2E7
+palette = 6=#89DCEB
+palette = 7=#D9E0EE
+
+# Bright palette (8-15)
+palette = 8=#988BA2
+palette = 9=#F28FAD
+palette = 10=#ABE9B3
+palette = 11=#FAE3B0
+palette = 12=#96CDFB
+palette = 13=#F5C2E7
+palette = 14=#89DCEB
+palette = 15=#D9E0EE
+
+# Extra indexed colors
+palette = 16=#F8BD96
+palette = 17=#F5E0DC
+
+# Window
+window-padding-x = 4
+window-padding-y = 4
+window-decoration = true
+window-width = 160
+window-height = 80
+macos-window-shadow = true
+
+# Mouse
+mouse-hide-while-typing = true
+
+# Shell
+command = /bin/zsh
+
+# Misc
+shell-integration = zsh
