@@ -54,8 +54,6 @@ alias wf-ctx="cat k8s.yaml | yq '.sites | keys[]' | kubectx"
 alias wf-ns="cat k8s.yaml | yq '.deploy.applicationNamespace' | xargs kubectl config set-context --current --namespace"
 autoload -U compinit && compinit
 
-
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -75,28 +73,9 @@ if command -v navi >/dev/null 2>&1; then
   source <(navi widget zsh)
 fi
 
-# Google Cloud SDK
-if [[ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]]; then
-  source "$HOME/google-cloud-sdk/path.zsh.inc"
-fi
-if [[ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]]; then
-  source "$HOME/google-cloud-sdk/completion.zsh.inc"
-fi
-
 eval "$(mcfly init zsh)"
 export MCFLY_LIGHT=TRUE
 export BUILDKIT_NO_CLIENT_TOKEN=1
-
-
-# Windsurf
-if [[ -d "$HOME/.codeium/windsurf/bin" ]]; then
-  export PATH="$HOME/.codeium/windsurf/bin:$PATH"
-fi
-
-# LM Studio CLI
-if [[ -d "$HOME/.lmstudio/bin" ]]; then
-  export PATH="$PATH:$HOME/.lmstudio/bin"
-fi
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
@@ -106,3 +85,6 @@ export NVM_DIR="$HOME/.nvm"
 if [[ -f ~/.zshrc.local ]]; then
   source ~/.zshrc.local
 fi
+
+export PATH="$PATH:$HOME/.local/bin"
+
