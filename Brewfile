@@ -119,10 +119,14 @@ brew "helm"
 brew "htop"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
+# Add GitHub support to git on the command-line
+brew "hub"
 # Configurable static site generator
 brew "hugo"
 # Command-line benchmarking tool
 brew "hyperfine"
+# Tools and libraries to manipulate images in select formats
+brew "imagemagick"
 # Command-line tool to export and inspect local iMessage database
 brew "imessage-exporter"
 # JSON diff and patch
@@ -153,6 +157,8 @@ brew "libevent"
 brew "lsd"
 # Utility for directing compilation
 brew "make"
+# Easily convert Marp Markdown files into static HTML/CSS, PDF, PPT and images
+brew "marp-cli"
 # Java-based project management
 brew "maven"
 # Fly through your shell history
@@ -167,8 +173,12 @@ brew "neovim"
 brew "ngrep"
 # Port scanning utility for large networks
 brew "nmap"
+# Open-source, cross-platform JavaScript runtime environment
+brew "node"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
+# Development kit for the Java programming language
+brew "openjdk"
 # AI coding agent, built for the terminal
 brew "opencode"
 # Swiss-army knife of markup format conversion
@@ -183,6 +193,8 @@ brew "procs"
 brew "pv"
 # Python version management
 brew "pyenv"
+# Pyenv plugin to manage virtualenv
+brew "pyenv-virtualenv"
 # Install various Ruby versions and implementations
 brew "ruby-build"
 # Ruby version manager
@@ -193,6 +205,8 @@ brew "redis"
 brew "repomix"
 # Powerful, clean, object-oriented scripting language
 brew "ruby"
+# Safe, concurrent, practical language
+brew "rust"
 # Command-line tool for the Amazon S3 service
 brew "s3cmd"
 # Fast and accurate code counter with complexity and COCOMO estimates
@@ -255,6 +269,8 @@ brew "hashicorp/tap/vault", trusted: true
 brew "mike-engel/jwt-cli/jwt-cli"
 # Microsoft Teams CLI for AI agents and automation
 brew "osodevops/tap/teams-cli", trusted: true
+# Password manager that keeps all passwords secure behind one password
+cask "1password"
 # Command-line interface for 1Password
 cask "1password-cli"
 # Terminal-based AI coding assistant
@@ -270,6 +286,8 @@ cask "ghostty"
 cask "obsidian"
 # Collaboration platform for API development
 cask "postman"
+# Music streaming service
+cask "spotify"
 # Managing Pull Requests and Issues For GitHub & GitHub Enterprise
 cask "trailer"
 # Open-source code editor
